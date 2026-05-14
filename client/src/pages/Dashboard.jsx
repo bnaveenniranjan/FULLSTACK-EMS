@@ -11,7 +11,7 @@ const Dashboard = () => {
 
   useEffect(() => {
 
-    setdata(dummyEmployeeDashboardData)
+    setdata(dummyAdminDashboardData)
 
     setTimeout(() => {
       setloading(false)
