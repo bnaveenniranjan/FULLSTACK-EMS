@@ -14,11 +14,11 @@ const Employees = () => {
   const [showCreateModal, setshowCreateModal] = useState(false)
 
   const fetchEmployees = useCallback(async () => {
-
+    
     setLoading(true)
 
     const filteredEmployees = dummyEmployeeData.filter((emp) =>
-      selectedDept ? emp.department === selectedDept : true
+      selectedDept ? emp.department === selectedDept : emp
     )
 
     setEmployees(filteredEmployees)
@@ -29,8 +29,8 @@ const Employees = () => {
 
   }, [selectedDept])
 
-  useEffect(() => {
-    fetchEmployees()
+  useEffect(()=> {
+    fetchEmployees();
   }, [fetchEmployees])
 
   const filtered = employees.filter((emp) =>
