@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { dummyProfileData } from '../assets/assets/assets'
 import { useEffect } from 'react'
 import { useState } from 'react'
@@ -14,6 +15,7 @@ import {
     SettingsIcon,
     ChevronRightIcon,
     LogOutIcon
+    
 } from 'lucide-react'
 
 import { Link } from 'react-router-dom'
@@ -37,7 +39,7 @@ const Sidebar = () => {
         setMobileOpen(false)
     }, [pathname])
 
-    const role = "ADMIN" || "EMPLOYEE"
+    const role = " " || "EMPLOYEE";
 
     const navItems = [
         {
