@@ -1,14 +1,16 @@
 import { useCallback, useEffect, useState } from "react"
 import { dummyLeaveData } from "../assets/assets/assets"
 import Loading from "../components/Loading"
+
 import {
   ThermometerIcon,
   UmbrellaIcon,
   PalmtreeIcon,
   PlusIcon
 } from "lucide-react"
-import LeaveHistory from "../components/attendance/Leave/LeaveHistory"
-import ApplyLeaveModel from "../components/attendance/Leave/ApplyLeaveModel"
+
+import LeaveHistory from "../components/Leave/LeaveHistory"
+import ApplyLeaveModel from "../components/Leave/ApplyLeaveModel"
 
 const Leave = () => {
 
