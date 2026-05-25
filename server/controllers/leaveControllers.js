@@ -85,7 +85,7 @@ if(isAdmin){
     const where = status ? {status} : {};
     const leaves = await LeaveApplication.find(where).
     populate("employeeId").sort({createAt:-1});
-    const data = leaves.map((1)=>{
+    const data = leaves.map((l)=>{
     const obj = l.toObject();
     return {
         ...obj,
@@ -112,6 +112,7 @@ return res.json({data})
 } catch (error) {
 return res.status(500).json({ error: "Failed" });
 }
+}
 
 
 
@@ -123,7 +124,7 @@ export const updateLeaveStatus = async(req,res) => {
         if(!["APPROVED","REJECTED","PENDING"].includes(status)){
             return res.status(400).json({error:"Invalid status"});
         }
-        const leave = await LeaveApplication.findByIdAndUpdate(req.params.id{status},{returnDocument:"after"})
+        const leave = await LeaveApplication.findByIdAndUpdate(req.params.id,{status},{returnDocument:"after"})
         return res.json({success : true,data:leave})
      }catch (error){
         return res.status(500).json({error:"Failed"});
