@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 const leaveApplicationSchema = new mongoose.Schema({
-    employeeId:{type:mongoose.Schema.Types.ObjectedId,ref:"Employee",required:true},
+    employeeId:{type:mongoose.Schema.Types.ObjectId,ref:"Employee",required:true},
     startDate :{type:Date,required:true},
     endDate :{type:Date,required:true},
     reason :{type:String,required:true},
@@ -11,4 +11,4 @@ const leaveApplicationSchema = new mongoose.Schema({
 const LeaveApplication = mongoose.models.LeaveApplication || 
 mongoose.model("LeaveApplication",leaveApplicationSchema)
 
-export default leaveApplication;
+export default LeaveApplication;
