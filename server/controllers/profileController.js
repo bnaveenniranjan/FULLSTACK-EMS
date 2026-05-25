@@ -1,40 +1,70 @@
+import Employee from "../models/Employee.js";
 //Get profile
 
-import Employee from "../models/Employee.js";
+
 
 //GET/API/profile
-export const getprofile = async (req,res) => {
+export const getProfile = async (req,res) => {
      try{
         const session = req.session;
         const employee = await Employee.findOne({userId:session.userId})
 
         if(!employee){
             // Authenticated user is not an employee - return admin profile
-            return res.js({
+            return res.json({
                 firstName:"Admin",
-                lastname:"",
+                lastName:"",
                 email:session.email,
             })
         }
+
         return res.json(employee)
+
      }catch(error){
-      return res.status(500).jso({error:"Failed to fetch profile"});
+
+      return res.status(500).json({
+        error:"Failed to fetch profile"
+      });
+
      }
 }
-export const updateProfile= async(req,res)=>{
+
+export const updateProfile = async(req,res)=>{
+
 try{
+
     const session = req.session;
-    const employee = await Employee.findOne({userId:session.userId})
-    if(!employee) return res.status(404).json({error:"Employee not found"});
-    if(employee.isDeleted){
-        return res.status(403).json({error:"Your account is deactivated.you cannot update your profie.",})
+
+    const employee = await Employee.findOne({
+        userId:session.userId
+    })
+
+    if(!employee){
+        return res.status(404).json({
+            error:"Employee not found"
+        });
     }
+
+    if(employee.isDeleted){
+
+        return res.status(403).json({
+            error:"Your account is deactivated.you cannot update your profile.",
+        })
+
+    }
+
     await Employee.findByIdAndUpdate(employee._id,{
         bio:req.body.bio
     })
+
     return res.json({success:true});
+
 }catch (error){
-    return res.status(500).json({error:"Failed to update profile"});
+
+    return res.status(500).json({
+        error:"Failed to update profile"
+    });
 
 }
+
 }
