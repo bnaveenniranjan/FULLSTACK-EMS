@@ -1,9 +1,8 @@
-import {router} from "express";
-import { clockInOut, getAttendance } from "../controllers/attendanceController";
+import express from "express";
+import protect from "../middleware/protect.js";
+import { clockInOut, getAttendance } from "../controllers/attendanceController.js";
 
-
-
-const attendanceRouter = Router();
+const attendanceRouter = express.Router();
 
 attendanceRouter.post('/',protect,clockInOut)
 attendanceRouter.get('/',protect,getAttendance)
