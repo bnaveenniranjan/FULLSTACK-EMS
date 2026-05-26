@@ -2,7 +2,7 @@ import { DEPARTMENTS } from "../constants/departments.js";
 import Attendance from "../models/Attendance.js";
 import Employee from "../models/Employee.js";
 import LeaveApplication from "../models/LeaveApplication.js";
-import Payslip from "../models/Payslip";
+import Payslip from "../models/Payslip.js";
 
 //get dashboard for employee and admin
 //GEt /api/dashboard
@@ -58,7 +58,7 @@ export const getDashboard = async(req,res) => {
             
                 return res.json({
                     role:"EMPLOYEE",
-                    employee:{...employee.id:employee._id.toString()},
+                    employee:{...employee,id:employee._id.toString()},
                     currentMonthAttendance,
                     pendingLeaves,
                     latestPayslip:latestPayslip ?{...latestPayslip,id:
