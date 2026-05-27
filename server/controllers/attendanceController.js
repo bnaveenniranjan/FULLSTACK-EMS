@@ -1,3 +1,4 @@
+import { inngest } from "../inngest/index.js";
 import Attendance from "../models/Attendance.js";
 import Employee from "../models/Employee.js";
 //Clock in/out for employee
@@ -26,6 +27,16 @@ try{
             checkIn : now,
             status: islate ? "LATE" : "PRESENT"
         })
+        await inngest.send({
+            name:"employee/check-out",
+            data:{
+                employeeId:employee._id,
+                attendanceId:attendance._id,
+            }
+        })
+
+
+
         return res.join({ success:true,type: "CHECK_IN",data :attendance});
     }else if(!existing.checkOut){
         const checkIntime = new Date(existing.checkIn).getTime()
